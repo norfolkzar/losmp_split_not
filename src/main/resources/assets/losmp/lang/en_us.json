@@ -7,5 +7,11 @@
   "item.losmp.fuel_canister_empty": "Fuel Canister (Empty)",
   "item.losmp.radio_part": "Radio Part",
   "effect.losmp.blood_soaked": "Blood Soaked",
-  "block.losmp.engine": "Engine"
+  "block.losmp.engine": "Engine",
+  "block.losmp.esky": "Esky",
+
+  "advancements.oilrig.root.title": "The Oil Rig",
+  "advancements.oilrig.root.desc": "Something doesn't feel right with this oil rig...",
+  "advancements.oilrig.blood_handed.title": "Blood-handed",
+  "advancements.oilrig.blood_handed.desc": "Kill an innocent player"
 }

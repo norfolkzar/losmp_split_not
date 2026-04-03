@@ -25,10 +25,6 @@ repositories {
     }
 
     maven {
-        name = "lounode"
-        url = "https://maven.lounode.top/#/releases"
-    }
-    maven {
         name = "Modrinth"
         url = "https://api.modrinth.com/maven"
     }

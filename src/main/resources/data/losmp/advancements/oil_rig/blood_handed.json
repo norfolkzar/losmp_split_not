@@ -1,0 +1,42 @@
+{
+  "parent": "losmp:oil_rig/root",
+  "criteria": {
+    "minecraft:player": {
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "minecraft:player",
+              "effects": {
+                "losmp:blood_handed": {}
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:player_killed_entity"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancements.oilrig.blood_handed.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "minecraft:player_head"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.oilrig.blood_handed.title"
+    }
+  },
+  "requirements": [
+    [
+      "minecraft:player"
+    ]
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "criteria": {
+    "crafting_table": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:crafting_table"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "background": "losmp:textures/gui/advancements/backgrounds/the_rig.png",
+    "description": {
+      "translate": "advancements.oilrig.root.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "losmp:wrench"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancements.oilrig.root.title"
+    }
+  },
+  "requirements": [
+    [
+      "crafting_table"
+    ]
+  ],
+  "sends_telemetry_event": false
+}
