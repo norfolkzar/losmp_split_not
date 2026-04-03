@@ -80,7 +80,7 @@ public class EskyBlockEntity extends BlockEntity implements ExtendedScreenHandle
         if(!world.isClient){
             var blockEntity = world.getBlockEntity(pos);
             if(blockEntity.getType() == ModBlockEntities.ESKY_BLOCK_ENTITY){
-                for(int i=0; i <28; i++){
+                for(int i=0; i <27; i++){
                     var itemStack = ((EskyBlockEntity) blockEntity).inventory.get(i);
                     if(itemStack.isFood()){
                         var nbt = itemStack.getOrCreateNbt();
