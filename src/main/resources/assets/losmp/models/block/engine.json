@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "front": "losmp:block/engine_front",
+    "side": "losmp:block/engine_side",
+    "top": "losmp:block/engine_top"
+  }
+}

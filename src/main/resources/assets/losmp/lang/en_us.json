@@ -1,0 +1,11 @@
+{
+  "item.losmp.wrench": "Wrench",
+  "item.losmp.shotgun_shell": "Shotgun Shell",
+  "item.losmp.shotgun": "Shotgun",
+  "item.losmp.signal_drive": "Shotgun",
+  "item.losmp.fuel_canister": "Fuel Canister",
+  "item.losmp.fuel_canister_empty": "Fuel Canister (Empty)",
+  "item.losmp.radio_part": "Radio Part",
+  "effect.losmp.blood_soaked": "Blood Soaked",
+  "block.losmp.engine": "Engine"
+}

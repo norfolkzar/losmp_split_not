@@ -1,0 +1,37 @@
+{
+	"schemaVersion": 1,
+	"id": "losmp",
+	"version": "${version}",
+	"name": "LOSMP mod",
+	"description": "This is an example description! Tell everyone what your mod is about!",
+	"authors": [
+		"funnydude09,justxyz_h,norfolkzar"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "",
+	"icon": "icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+          "net.shadow.losmp.Losmp"
+		],
+        "client": [
+          "net.shadow.losmp.LosmpClient"
+        ],
+		"fabric-datagen": [
+          "net.shadow.losmp.LosmpDataGenerator"
+		]
+	},
+	"mixins": [
+		"losmp-mod.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.18.6",
+		"minecraft": "~1.20.1",
+		"java": ">=17",
+		"fabric-api": "*"
+	}
+}
