@@ -154,7 +154,6 @@ public class ShotgunItem extends Item implements GeoItem {
     public void createRenderer(Consumer<Object> consumer) {
         consumer.accept(new RenderProvider() {
             private final ShotgunRenderer renderer = new ShotgunRenderer();
-
             @Override
             public BuiltinModelItemRenderer getCustomRenderer() {
                 return this.renderer;

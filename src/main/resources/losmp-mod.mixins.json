@@ -7,6 +7,8 @@
     "ItemMixin",
     "PlayerInventoryMixin",
     "ScreenHandlerMixin",
+    "ServerPlayerEntityAccessor",
+    "ServerPlayerEntityMixin",
     "SlotMixin"
   ],
   "injectors": {

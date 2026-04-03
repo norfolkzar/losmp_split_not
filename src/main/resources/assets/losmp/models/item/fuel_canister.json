@@ -6,7 +6,7 @@
   "overrides": [
     {
       "predicate": {
-        "losmp.fuel_percentage": 1
+        "losmp.fuel": 1
       },
       "model": "losmp:item/fuel_canister_empty"
     }

@@ -18,18 +18,21 @@ public class FlairBlockEntity extends BlockEntity {
     private int timer = 0;
 
     public static void tick(World world, BlockPos pos, BlockState state, FlairBlockEntity be) {
-        if (!world.isClient && ModConfigs.isFlairWorking.equals(false) && !(be.timer >= 1200)) {
-            be.timer++;
-            if (be.timer >= 1200) {
-                be.timer = 0;
-                for (ServerPlayerEntity player : ((ServerWorld) world).getPlayers()) {
-                    player.playSound(SoundEvents.BLOCK_NOTE_BLOCK_BELL.value(), SoundCategory.BLOCKS, 1f, 1f);
+        if (!world.isClient) {
+            var server = world.getServer();
+            var rule = server.getGameRules().getBoolean(ModConfigs.isFlairWorking);
+            if(!rule&&!(be.timer >= 1200)) {
+                be.timer++;
+                if (be.timer >= 1200) {
+                    be.timer = 0;
+                    for (ServerPlayerEntity player : ((ServerWorld) world).getPlayers()) {
+                        player.playSound(SoundEvents.BLOCK_NOTE_BLOCK_BELL.value(), SoundCategory.BLOCKS, 1f, 1f);
+                    }
                 }
             }
-        }
-        if(!world.isClient && ModConfigs.isFlairWorking.equals(true)){
-            be.timer =0;
+            if (rule) {
+                be.timer = 0;
+            }
         }
     }
-
 }

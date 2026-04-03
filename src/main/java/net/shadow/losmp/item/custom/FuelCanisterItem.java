@@ -9,6 +9,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.world.World;
 import net.shadow.losmp.block.ModBlocks;
+import net.shadow.losmp.block.entity.ModBlockEntities;
 import net.shadow.losmp.config.ModConfigs;
 import org.jetbrains.annotations.Nullable;
 
@@ -23,13 +24,19 @@ public class FuelCanisterItem extends Item {
     public ActionResult useOnBlock(ItemUsageContext context) {
         var level = context.getWorld();
         var player = context.getPlayer();
-        var server = player.getServer();
-        var block = level.getBlockState(context.getBlockPos());
-        var itemStack = player.getMainHandStack();
-        if(block.hasBlockEntity() && block.getBlock() == ModBlocks.FLAIR_BLOCK && ModConfigs.isFlairWorking.equals(false) && itemStack.getNbt().getInt("losmp.fuel") == 1){
-            itemStack.getNbt().putInt("losmp.fuel",0);
-            var rule = server.getGameRules().get(ModConfigs.isFlairWorking);
-            rule.set(true,server);
+        if (player != null && !level.isClient) {
+            var server = player.getServer();
+            var blockEntity = level.getBlockEntity(context.getBlockPos());
+            var itemStack = player.getMainHandStack();
+            if (server != null) {
+                var rule = server.getGameRules().get(ModConfigs.isFlairWorking);
+                if (blockEntity.getType() == ModBlockEntities.FLAIR_BLOCK_ENTITY&& itemStack.getNbt().getInt("losmp.fuel") == 1 && rule.get()) {
+                    itemStack.getNbt().putInt("losmp.fuel", 0);
+                    rule.set(true, server);
+                    return ActionResult.SUCCESS;
+                }
+                return ActionResult.SUCCESS;
+            }
             return ActionResult.SUCCESS;
         }
         return ActionResult.SUCCESS;

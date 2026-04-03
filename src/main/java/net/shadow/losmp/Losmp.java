@@ -2,15 +2,12 @@ package net.shadow.losmp;
 
 import io.github.lounode.eventwrapper.fabric.AutoEventSubscriberRegistryFabric;
 import net.fabricmc.api.ModInitializer;
-
 import net.fabricmc.fabric.api.entity.event.v1.ServerEntityCombatEvents;
-import net.fabricmc.fabric.api.message.v1.ServerMessageEvents;
 import net.fabricmc.loader.api.FabricLoader;
 import net.fabricmc.loader.impl.ModContainerImpl;
 import net.shadow.losmp.block.ModBlocks;
 import net.shadow.losmp.block.entity.ModBlockEntities;
 import net.shadow.losmp.config.ModConfigs;
-import net.shadow.losmp.events.ChatEvent;
 import net.shadow.losmp.events.PlayerKilledByPlayerHandler;
 import net.shadow.losmp.item.ModItems;
 import net.shadow.losmp.registries.CommandRegistry;
@@ -38,7 +35,6 @@ public class Losmp implements ModInitializer {
             }
         });
         ServerEntityCombatEvents.AFTER_KILLED_OTHER_ENTITY.register(new PlayerKilledByPlayerHandler());
-        ServerMessageEvents.CHAT_MESSAGE.register(new ChatEvent());
 		LOGGER.info("Hello Fabric world!");
 	}
 }

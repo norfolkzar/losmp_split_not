@@ -21,7 +21,6 @@ public class DebuffsCommand {
                       .then(CommandManager.literal("gyro").executes((context -> gyroToggle(context,false))))
                       .then(CommandManager.literal("flair").executes((context -> flairToggle(context,false))))
                       .then(CommandManager.literal("engine").executes((context -> engineToggle(context,false)))))
-
                 .then(CommandManager.literal("repair")
                         .then(CommandManager.literal("gyro").executes((context -> gyroToggle(context,true))))
                         .then(CommandManager.literal("flair").executes((context -> flairToggle(context,true))))
