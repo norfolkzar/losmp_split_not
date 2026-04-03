@@ -19,6 +19,8 @@ import net.minecraft.world.World;
 import net.shadow.losmp.screen.EskyBlockScreenHandler;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Objects;
+
 public class EskyBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory, ImplementedInventory {
 
     private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(27,ItemStack.EMPTY);
@@ -68,7 +70,7 @@ public class EskyBlockEntity extends BlockEntity implements ExtendedScreenHandle
 
     @Override
     public Text getDisplayName() {
-        return Text.literal("Esky Block");
+        return Text.translatable("block.losmp.esky");
     }
 
     @Override
@@ -79,7 +81,7 @@ public class EskyBlockEntity extends BlockEntity implements ExtendedScreenHandle
     public void tick(World world, BlockPos pos, BlockState state) {
         if(!world.isClient){
             var blockEntity = world.getBlockEntity(pos);
-            if(blockEntity.getType() == ModBlockEntities.ESKY_BLOCK_ENTITY){
+            if(Objects.requireNonNull(blockEntity).getType() == ModBlockEntities.ESKY_BLOCK_ENTITY){
                 for(int i=0; i <27; i++){
                     var itemStack = ((EskyBlockEntity) blockEntity).inventory.get(i);
                     if(itemStack.isFood()){
