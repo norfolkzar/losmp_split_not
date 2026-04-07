@@ -1,4 +1,4 @@
-package net.shadow.losmp.block;
+package net.shadow.losmp.registries;
 
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
@@ -10,6 +10,7 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 import net.shadow.losmp.Losmp;
+import net.shadow.losmp.block.*;
 
 public class ModBlocks {
 
@@ -36,6 +37,10 @@ public class ModBlocks {
 
     public static final Block FLAIR_BLOCK = registerBlock("flair_block",
             new FlairBlock(AbstractBlock.Settings.create()));
+
+    public static final Block SIGNAL_BOOSTER = registerBlock("signal_booster",
+            new SignalBooster(AbstractBlock.Settings.create()));
+
 
 
     private static Block registerBlock(String name , Block block){

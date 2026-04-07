@@ -13,5 +13,6 @@
   "advancements.oilrig.root.title": "The Oil Rig",
   "advancements.oilrig.root.desc": "Something doesn't feel right with this oil rig...",
   "advancements.oilrig.blood_handed.title": "Blood-handed",
-  "advancements.oilrig.blood_handed.desc": "Kill an innocent player"
+  "advancements.oilrig.blood_handed.desc": "Kill an innocent player",
+  "block.losmp.signal_booster": "Signal Booster"
 }

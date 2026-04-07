@@ -10,7 +10,7 @@ import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.shadow.losmp.block.entity.FlairBlockEntity;
-import net.shadow.losmp.block.entity.ModBlockEntities;
+import net.shadow.losmp.registries.ModBlockEntities;
 import org.jetbrains.annotations.Nullable;
 
 public class FlairBlock extends BlockWithEntity implements BlockEntityProvider {

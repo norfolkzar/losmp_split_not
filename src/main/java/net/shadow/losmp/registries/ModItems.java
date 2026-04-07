@@ -1,4 +1,4 @@
-package net.shadow.losmp.item;
+package net.shadow.losmp.registries;
 
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroupEntries;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
@@ -11,6 +11,7 @@ import net.shadow.losmp.Losmp;
 import net.shadow.losmp.item.custom.FuelCanisterItem;
 import net.shadow.losmp.item.custom.ShotgunAmmoItem;
 import net.shadow.losmp.item.custom.ShotgunItem;
+import net.shadow.losmp.item.custom.SignalDrive;
 
 public class ModItems {
 
@@ -26,14 +27,8 @@ public class ModItems {
     public static final Item RADIO_PART_ITEM = registerItems("radio_part",
             new Item(new Item.Settings()));
 
-    public static final Item SIGNAL_DRIVE_ITEM = registerItems("signal_drive",
-            new Item(new Item.Settings()));
-    public static final Item OFFLINE_SIGNAL_DRIVE_ITEM = registerItems("signal_drive_offline",
-            new Item(new Item.Settings()));
-    public static final Item AWAITING_SIGNAL_DRIVE_ITEM = registerItems("signal_drive_awaiting",
-            new Item(new Item.Settings()));
-    public static final Item BOOSTING_SIGNAL_DRIVE_ITEM = registerItems("signal_drive_boosting",
-            new Item(new Item.Settings()));
+    public static final Item SIGNAL_DRIVE_ITEM = registerItems("signal_drive_offline",
+            new SignalDrive(new Item.Settings().maxCount(1)));
 
     public static final Item FUEL_CANISTER_ITEM = registerItems("fuel_canister",
             new FuelCanisterItem(new Item.Settings().maxCount(1)));

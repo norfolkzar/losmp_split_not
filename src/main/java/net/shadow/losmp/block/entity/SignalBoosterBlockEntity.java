@@ -17,21 +17,15 @@ import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.shadow.losmp.registries.ModBlockEntities;
-import net.shadow.losmp.registries.ModConfigs;
-import net.shadow.losmp.registries.ModItems;
-import net.shadow.losmp.screen.RadioScreenHandler;
+import net.shadow.losmp.screen.SignalBoosterScreenHandler;
 import org.jetbrains.annotations.Nullable;
 
-public class RadioBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory, ImplementedInventory{
-
-    private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(3,ItemStack.EMPTY);
+public class SignalBoosterBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory, ImplementedInventory {
+    public final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(4,ItemStack.EMPTY);
     protected final PropertyDelegate propertyDelegate;
-    public int numberOfSignals = 0;
-    public boolean startTimer = false;
-    public int waitTime = 0;
 
-    public RadioBlockEntity(BlockPos pos, BlockState state) {
-        super(ModBlockEntities.RADIO_BLOCK_ENTITY, pos, state);
+    public SignalBoosterBlockEntity(BlockPos pos, BlockState state) {
+        super(ModBlockEntities.SIGNAL_BOOSTER_BLOCK_ENTITY, pos, state);
         this.propertyDelegate = new PropertyDelegate() {
             @Override
             public int get(int index) {
@@ -45,11 +39,10 @@ public class RadioBlockEntity extends BlockEntity implements ExtendedScreenHandl
 
             @Override
             public int size() {
-                return 27;
+                return 4;
             }
         };
     }
-
 
     @Override
     public void writeScreenOpeningData(ServerPlayerEntity serverPlayerEntity, PacketByteBuf buf) {
@@ -75,28 +68,15 @@ public class RadioBlockEntity extends BlockEntity implements ExtendedScreenHandl
 
     @Override
     public Text getDisplayName() {
-        return Text.literal("Radio Block");
+        return Text.translatable("block.losmp.signal_booster");
     }
 
     @Override
     public @Nullable ScreenHandler createMenu(int syncId, PlayerInventory playerInventory, PlayerEntity player) {
-        return new RadioScreenHandler(syncId,playerInventory,this,this.propertyDelegate);
+        return new SignalBoosterScreenHandler(syncId,playerInventory,this,this.propertyDelegate);
     }
 
     public void tick(World world, BlockPos pos, BlockState state) {
-        var blockEntity = world.getBlockEntity(pos);
-        var rule = world.getServer().getGameRules().getBoolean(ModConfigs.isRadioWorking);
-        if(!world.isClient() && blockEntity instanceof RadioBlockEntity radioBlockEntity && !rule){
-            if(startTimer){
-                waitTime++;
-            }
-            var radioParts = new ItemStack(ModItems.RADIO_PART_ITEM);
-            if(radioBlockEntity.inventory.get(0).equals(radioParts)&& radioBlockEntity.inventory.get(1).equals(radioParts)&&radioBlockEntity.inventory.get(2).equals(radioParts)){
-                startTimer = true;
-                radioBlockEntity.inventory.set(0,ItemStack.EMPTY);
-                radioBlockEntity.inventory.set(1,ItemStack.EMPTY);
-                radioBlockEntity.inventory.set(2,ItemStack.EMPTY);
-            }
-        }
+
     }
 }

@@ -19,6 +19,8 @@
   },
   "client": [
     "CameraAccessor",
-    "CameraMixin"
+    "CameraMixin",
+    "InGameHudAccessor",
+    "InGameHudMixin"
   ]
 }

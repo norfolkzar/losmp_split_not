@@ -16,6 +16,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.shadow.losmp.registries.ModBlockEntities;
 import net.shadow.losmp.screen.EskyBlockScreenHandler;
 import org.jetbrains.annotations.Nullable;
 
@@ -68,7 +69,7 @@ public class EskyBlockEntity extends BlockEntity implements ExtendedScreenHandle
 
     @Override
     public Text getDisplayName() {
-        return Text.literal("Esky Block");
+        return Text.translatable("block.losmp.esky");
     }
 
     @Override

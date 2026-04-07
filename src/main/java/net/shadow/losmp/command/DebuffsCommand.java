@@ -6,7 +6,8 @@ import com.mojang.brigadier.context.CommandContext;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.text.Text;
-import net.shadow.losmp.config.ModConfigs;
+import net.shadow.losmp.events.ServerEvents;
+import net.shadow.losmp.registries.ModConfigs;
 
 
 public class DebuffsCommand {
@@ -20,10 +21,12 @@ public class DebuffsCommand {
                 .then(CommandManager.literal("break")
                       .then(CommandManager.literal("gyro").executes((context -> gyroToggle(context,false))))
                       .then(CommandManager.literal("flair").executes((context -> flairToggle(context,false))))
+                        .then(CommandManager.literal("radio").executes((context -> radioToggle(context,false))))
                       .then(CommandManager.literal("engine").executes((context -> engineToggle(context,false)))))
                 .then(CommandManager.literal("repair")
                         .then(CommandManager.literal("gyro").executes((context -> gyroToggle(context,true))))
                         .then(CommandManager.literal("flair").executes((context -> flairToggle(context,true))))
+                        .then(CommandManager.literal("radio").executes((context -> radioToggle(context,true))))
                         .then(CommandManager.literal("engine").executes((context -> engineToggle(context,true)))))
 
 
@@ -73,6 +76,7 @@ public class DebuffsCommand {
         rule.set(isEngineEnabled,serverCommandSource.getServer());
         if(isEngineEnabled){
             context.getSource().sendFeedback(()-> Text.literal("Engine Is Now Repaired"),true);
+            ServerEvents.awooga = "yes";
             return 1;
         }
         else context.getSource().sendFeedback(()-> Text.literal("Engine Is Now Broken"),true);
@@ -85,9 +89,23 @@ public class DebuffsCommand {
         rule.set(isFlairEnabled,serverCommandSource.getServer());
         if(isFlairEnabled){
             context.getSource().sendFeedback(()-> Text.literal("Flair Is Now Repaired"),true);
+            ServerEvents.awooga = "yes";
             return 1;
         }
         else context.getSource().sendFeedback(()-> Text.literal("Flair Is Now Broken"),true);
+        return 1;
+    }
+
+    public static int radioToggle(CommandContext<ServerCommandSource> context, boolean isRadioEnabled) {
+        var serverCommandSource = context.getSource();
+        var rule = serverCommandSource.getServer().getGameRules().get(ModConfigs.isRadioWorking);
+        rule.set(isRadioEnabled,serverCommandSource.getServer());
+        if(isRadioEnabled){
+            context.getSource().sendFeedback(()-> Text.literal("Radio Is Now Repaired"),true);
+            ServerEvents.awooga = "yes";
+            return 1;
+        }
+        else context.getSource().sendFeedback(()-> Text.literal("Radio Is Now Broken"),true);
         return 1;
     }
 
@@ -97,6 +115,7 @@ public class DebuffsCommand {
         rule.set(isGyroEnabled,serverCommandSource.getServer());
         if(isGyroEnabled){
             context.getSource().sendFeedback(()-> Text.literal("Gyro Is Now Repaired"),true);
+            ServerEvents.awooga = "yes";
             return 1;
         }
         else context.getSource().sendFeedback(()-> Text.literal("Gyro Is Now Broken"),true);

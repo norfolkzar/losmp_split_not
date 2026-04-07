@@ -8,7 +8,8 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.shadow.losmp.config.ModConfigs;
+import net.shadow.losmp.registries.ModBlockEntities;
+import net.shadow.losmp.registries.ModConfigs;
 
 public class FlairBlockEntity extends BlockEntity {
     public FlairBlockEntity(BlockPos pos, BlockState state) {

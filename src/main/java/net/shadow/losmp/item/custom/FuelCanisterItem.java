@@ -8,9 +8,9 @@ import net.minecraft.item.ItemUsageContext;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.world.World;
-import net.shadow.losmp.block.ModBlocks;
-import net.shadow.losmp.block.entity.ModBlockEntities;
-import net.shadow.losmp.config.ModConfigs;
+import net.shadow.losmp.events.ServerEvents;
+import net.shadow.losmp.registries.ModBlockEntities;
+import net.shadow.losmp.registries.ModConfigs;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -33,6 +33,7 @@ public class FuelCanisterItem extends Item {
                 if (blockEntity.getType() == ModBlockEntities.FLAIR_BLOCK_ENTITY&& itemStack.getNbt().getInt("losmp.fuel") == 1 && rule.get()) {
                     itemStack.getNbt().putInt("losmp.fuel", 0);
                     rule.set(true, server);
+                    ServerEvents.awooga = "yes";
                     return ActionResult.SUCCESS;
                 }
                 return ActionResult.SUCCESS;

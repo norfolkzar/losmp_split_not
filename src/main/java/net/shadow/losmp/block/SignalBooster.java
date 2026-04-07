@@ -5,8 +5,6 @@ import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.BlockWithEntity;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.entity.BlockEntityTicker;
-import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.screen.NamedScreenHandlerFactory;
@@ -17,11 +15,11 @@ import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.shadow.losmp.block.entity.EskyBlockEntity;
-import net.shadow.losmp.registries.ModBlockEntities;
+import net.shadow.losmp.block.entity.SignalBoosterBlockEntity;
 import org.jetbrains.annotations.Nullable;
 
-public class EskyBlock extends BlockWithEntity implements BlockEntityProvider {
-    public EskyBlock(Settings settings) {
+public class SignalBooster extends BlockWithEntity implements BlockEntityProvider {
+    public SignalBooster(Settings settings) {
         super(settings);
     }
 
@@ -31,15 +29,10 @@ public class EskyBlock extends BlockWithEntity implements BlockEntityProvider {
     }
 
     @Override
-    public @Nullable BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
-        return new EskyBlockEntity(pos, state);
-    }
-
-    @Override
     public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
         if (state.getBlock() != newState.getBlock()) {
             BlockEntity blockEntity = world.getBlockEntity(pos);
-            if (blockEntity instanceof EskyBlockEntity) {
+            if (blockEntity instanceof SignalBoosterBlockEntity) {
                 ItemScatterer.spawn(world, pos, (Inventory) blockEntity);
                 world.updateComparators(pos, this);
             }
@@ -50,7 +43,7 @@ public class EskyBlock extends BlockWithEntity implements BlockEntityProvider {
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if (!world.isClient) {
-            NamedScreenHandlerFactory screenHandlerFactory = ((EskyBlockEntity) world.getBlockEntity(pos));
+            NamedScreenHandlerFactory screenHandlerFactory = ((SignalBoosterBlockEntity) world.getBlockEntity(pos));
             if (screenHandlerFactory != null) {
                 player.openHandledScreen(screenHandlerFactory);
             }
@@ -58,9 +51,9 @@ public class EskyBlock extends BlockWithEntity implements BlockEntityProvider {
         return ActionResult.SUCCESS;
     }
 
+
     @Override
-    public @Nullable <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-        return checkType(type, ModBlockEntities.ESKY_BLOCK_ENTITY,
-                (world1, pos, state1, blockEntity) -> blockEntity.tick(world1, pos, state1));
+    public @Nullable BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
+        return new SignalBoosterBlockEntity(pos,state);
     }
 }

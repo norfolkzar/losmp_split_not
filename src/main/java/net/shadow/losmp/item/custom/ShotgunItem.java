@@ -1,9 +1,12 @@
 package net.shadow.losmp.item.custom;
 
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.client.render.item.BuiltinModelItemRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.ProjectileUtil;
 import net.minecraft.item.Item;
@@ -14,11 +17,12 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
+import net.minecraft.util.crash.CrashReport;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import net.shadow.losmp.item.ModItems;
+import net.shadow.losmp.registries.ModItems;
 import net.shadow.losmp.item.client.ShotgunRenderer;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animatable.GeoItem;
@@ -30,6 +34,7 @@ import software.bernie.geckolib.core.animation.*;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.RenderUtils;
 
+import javax.sql.rowset.CachedRowSet;
 import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
@@ -49,7 +54,10 @@ public class ShotgunItem extends Item implements GeoItem {
                 EntityHitResult result = hitScanEntities(player, 15);
                 if (itemStack.getNbt().getInt("losmp.ammo") > 0 && !world.isClient) {
                     player.getItemCooldownManager().set(this, 100);
-                    triggerAnim(player,GeoItem.getOrAssignId(player.getStackInHand(hand), (ServerWorld) world), "shoot_controller", "shoot");
+                    //triggerAnim(player,GeoItem.getOrAssignId(player.getStackInHand(hand), (ServerWorld) world), "shoot_controller", "shoot");
+                    //MinecraftClient.getInstance().setScreen();
+                    world.playSound(null,player.getBlockPos(),SoundEvents.BLOCK_BEACON_AMBIENT,SoundCategory.PLAYERS,1f,1f);
+                    player.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS,20*3,1));
                     player.getStackInHand(hand);
                     world.playSound(null,player.getBlockPos(),SoundEvents.AMBIENT_UNDERWATER_LOOP_ADDITIONS_RARE,SoundCategory.AMBIENT,10f,10f);
                     itemStack.getOrCreateNbt().putInt("losmp.ammo", itemStack.getNbt().getInt("losmp.ammo") - 1);
@@ -62,7 +70,7 @@ public class ShotgunItem extends Item implements GeoItem {
             else {
                 itemStack.getOrCreateNbt().putBoolean("losmp.reloading", true);
                 if(!world.isClient) {
-                    triggerAnim(player, GeoItem.getOrAssignId(player.getStackInHand(hand), (ServerWorld) world), "reload_controller", "reload");
+                    //triggerAnim(player, GeoItem.getOrAssignId(player.getStackInHand(hand), (ServerWorld) world), "reload_controller", "reload");
                 }
                 player.setCurrentHand(hand);
                 return TypedActionResult.consume(itemStack);

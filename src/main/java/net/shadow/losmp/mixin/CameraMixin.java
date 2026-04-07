@@ -4,7 +4,7 @@ import net.minecraft.client.render.Camera;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.world.BlockView;
-import net.shadow.losmp.config.ModConfigs;
+import net.shadow.losmp.registries.ModConfigs;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -15,7 +15,8 @@ public abstract class CameraMixin {
     @Inject(method = "update", at = @At("TAIL"))
     private void applyShake(BlockView area, Entity focusedEntity, boolean thirdPerson, boolean inverseView, float tickDelta, CallbackInfo ci) {
         if ((focusedEntity instanceof PlayerEntity player)) {
-            if (ModConfigs.isGyroZeppeliWorking.equals(false)) {
+            var rule = player.getServer().getGameRules().getBoolean(ModConfigs.isGyroZeppeliWorking);
+            if (!rule) {
                 float time = player.age + tickDelta;
                 float intensity = 0.05f;
                 float offsetX = (float) Math.sin(time * 0.8) * intensity;

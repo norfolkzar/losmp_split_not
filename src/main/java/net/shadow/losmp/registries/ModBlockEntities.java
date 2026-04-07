@@ -1,4 +1,4 @@
-package net.shadow.losmp.block.entity;
+package net.shadow.losmp.registries;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.minecraft.block.entity.BlockEntityType;
@@ -6,12 +6,20 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 import net.shadow.losmp.Losmp;
-import net.shadow.losmp.block.ModBlocks;
+import net.shadow.losmp.block.entity.EskyBlockEntity;
+import net.shadow.losmp.block.entity.FlairBlockEntity;
+import net.shadow.losmp.block.entity.RadioBlockEntity;
+import net.shadow.losmp.block.entity.SignalBoosterBlockEntity;
 
 public class ModBlockEntities {
     public static final BlockEntityType<EskyBlockEntity> ESKY_BLOCK_ENTITY =
             Registry.register(Registries.BLOCK_ENTITY_TYPE, new Identifier(Losmp.MOD_ID,"esky_block_entity"),
                     FabricBlockEntityTypeBuilder.create(EskyBlockEntity::new, ModBlocks.ESKY_BLOCK).build());
+
+    public static final BlockEntityType<SignalBoosterBlockEntity> SIGNAL_BOOSTER_BLOCK_ENTITY =
+            Registry.register(Registries.BLOCK_ENTITY_TYPE, new Identifier(Losmp.MOD_ID,"signal_booster_block_entity"),
+                    FabricBlockEntityTypeBuilder.create(SignalBoosterBlockEntity::new, ModBlocks.SIGNAL_BOOSTER).build());
+
 
     public static final BlockEntityType<RadioBlockEntity> RADIO_BLOCK_ENTITY =
             Registry.register(Registries.BLOCK_ENTITY_TYPE, new Identifier(Losmp.MOD_ID,"radio_block_entity"),

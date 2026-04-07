@@ -11,6 +11,7 @@ import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.slot.Slot;
 import net.shadow.losmp.block.entity.RadioBlockEntity;
+import net.shadow.losmp.registries.ModScreenHandlers;
 
 public class RadioScreenHandler extends ScreenHandler {
 
@@ -30,9 +31,9 @@ public class RadioScreenHandler extends ScreenHandler {
         playerInventory.onOpen(playerInventory.player);
         this.propertyDelegate = arrayPropertyDelegate;
         this.blockEntity = ((RadioBlockEntity) blockEntity);
-            for(int k = 0; k < 3; ++k) {
-                this.addSlot(new Slot(inventory, k, 8 + k *75, 36));
-            }
+        for(int k = 0; k < 3; ++k) {
+            this.addSlot(new Slot(inventory, k, 8 + k *75, 36));
+        }
         addPlayerHotbar(playerInventory);
         addPlayerInventory(playerInventory);
         addProperties(arrayPropertyDelegate);

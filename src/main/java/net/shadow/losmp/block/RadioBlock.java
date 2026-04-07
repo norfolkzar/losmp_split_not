@@ -6,19 +6,11 @@ import net.minecraft.block.BlockWithEntity;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
-import net.minecraft.screen.NamedScreenHandlerFactory;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.text.Text;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
 import net.minecraft.util.ItemScatterer;
-import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.shadow.losmp.block.entity.ModBlockEntities;
+import net.shadow.losmp.registries.ModBlockEntities;
 import net.shadow.losmp.block.entity.RadioBlockEntity;
 import org.jetbrains.annotations.Nullable;
 
@@ -42,30 +34,6 @@ public class RadioBlock extends BlockWithEntity {
             }
             super.onStateReplaced(state, world, pos, newState, moved);
         }
-    }
-
-    @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        var blockEntity = world.getBlockEntity(pos);
-        if (!world.isClient) {
-            if (blockEntity instanceof RadioBlockEntity radioBlockEntity && radioBlockEntity.waitTime >= 100 && radioBlockEntity.startTimer) {
-                radioBlockEntity.waitTime = 0;
-                radioBlockEntity.startTimer = false;
-                radioBlockEntity.numberOfSignals++;
-                world.playSound(null,pos, SoundEvents.BLOCK_BEACON_AMBIENT, SoundCategory.BLOCKS,1f,1f);
-                for(PlayerEntity playerEntity : world.getPlayers()){
-                    if(player.hasPermissionLevel(2)){
-                        playerEntity.sendMessage(Text.literal("Radio Signals sent:" + radioBlockEntity.numberOfSignals));
-                    }
-                }
-            } else {
-                NamedScreenHandlerFactory screenHandlerFactory = ((RadioBlockEntity) world.getBlockEntity(pos));
-                if (screenHandlerFactory != null) {
-                    player.openHandledScreen(screenHandlerFactory);
-                }
-            }
-        }
-        return ActionResult.SUCCESS;
     }
 
     @Override

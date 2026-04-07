@@ -1,0 +1,62 @@
+{
+  "deep_sea_sounds_1": {
+    "subtitle": "sounds.losmp.deep_sea_sounds_1",
+    "sounds": [
+      "losmp:deep_sea_sounds_1"
+    ]
+  },
+  "deep_sea_sounds_2": {
+    "subtitle": "sounds.losmp.deep_sea_sounds_2",
+    "sounds": [
+      "losmp:deep_sea_sounds_2"
+    ]
+  },
+  "sea_sounds_1": {
+    "subtitle": "sounds.losmp.sea_sounds_1",
+    "sounds": [
+      "losmp:sea_sounds_1"
+    ]
+  },
+  "sea_sounds_2": {
+    "subtitle": "sounds.losmp.sea_sounds_2",
+    "sounds": [
+      "losmp:sea_sounds_2"
+    ]
+  },
+  "engine_working": {
+    "subtitle": "sounds.losmp.engine_working",
+    "sounds": [
+      "losmp:engine_working"
+    ]
+  },
+  "engine_broken": {
+    "subtitle": "sounds.losmp.engine_broken",
+    "sounds": [
+      "losmp:engine_broken"
+    ]
+  },
+  "oil_rig_creak_four": {
+    "subtitle": "sounds.losmp.oil_rig_creak_four",
+    "sounds": [
+      "losmp:oil_rig_creak_four"
+    ]
+  },
+  "oil_rig_creak_three": {
+    "subtitle": "sounds.losmp.oil_rig_creak_three",
+    "sounds": [
+      "losmp:oil_rig_creak_three"
+    ]
+  },
+  "oil_rig_creak_two": {
+    "subtitle": "sounds.losmp.oil_rig_creak_two",
+    "sounds": [
+      "losmp:oil_rig_creak_two"
+    ]
+  },
+  "oil_rig_creak_one": {
+    "subtitle": "sounds.losmp.oil_rig_creak_one",
+    "sounds": [
+      "losmp:oil_rig_creak_one"
+    ]
+  }
+}
