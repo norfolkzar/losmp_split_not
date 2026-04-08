@@ -12,10 +12,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public abstract class InventoryModifierMixin {
     @Unique
     PlayerInventory self = (PlayerInventory) (Object) this;
-    @Inject(method = "isValidHotbarIndex",at=@At("HEAD"), cancellable = true)
-    private static void isValidHotbarIndexThree(int slot, CallbackInfoReturnable<Boolean> cir) {
-        cir.setReturnValue(slot >= 3 && slot < 6);
-    }
 
     @Inject(method = "scrollInHotbar",at=@At("HEAD"))
     private void scrollInHotbarThree(double scrollAmount, CallbackInfo ci) {

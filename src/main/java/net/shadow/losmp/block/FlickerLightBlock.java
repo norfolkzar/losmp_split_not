@@ -13,6 +13,8 @@ import net.minecraft.world.World;
 import net.shadow.losmp.registries.ModConfigs;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Objects;
+
 public class FlickerLightBlock extends Block {
 
     public static final IntProperty FLICKER = IntProperty.of("flicker", 0, 2);
@@ -36,7 +38,7 @@ public class FlickerLightBlock extends Block {
 
     @Override
     public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        var rule = world.getServer().getGameRules().getBoolean(ModConfigs.isEngineWorking);
+        var rule = Objects.requireNonNull(world).getServer().getGameRules().getBoolean(ModConfigs.isEngineWorking);
         if (!rule) {
             int flicker = random.nextInt(3);
             world.setBlockState(pos, state.with(FLICKER, flicker));

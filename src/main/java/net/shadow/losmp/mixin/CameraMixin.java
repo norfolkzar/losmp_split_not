@@ -10,12 +10,14 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import java.util.Objects;
+
 @Mixin(Camera.class)
 public abstract class CameraMixin {
     @Inject(method = "update", at = @At("TAIL"))
     private void applyShake(BlockView area, Entity focusedEntity, boolean thirdPerson, boolean inverseView, float tickDelta, CallbackInfo ci) {
         if ((focusedEntity instanceof PlayerEntity player)) {
-            var rule = player.getServer().getGameRules().getBoolean(ModConfigs.isGyroZeppeliWorking);
+            var rule = true; //player.getServer().getGameRules().getBoolean(ModConfigs.isGyroZeppeliWorking); // (this fucking crashes idk why)
             if (!rule) {
                 float time = player.age + tickDelta;
                 float intensity = 0.05f;
